@@ -1,0 +1,7 @@
+# Exige Conventional Commits: tipo: descrição
+mensagem=$(head -1 "$1")
+if ! echo "$mensagem" | grep -Eq '^(feat|fix|docs|style|refactor|test|chore|perf)(\([a-z0-9-]+\))?: .{3,}'; then
+  echo "Mensagem de commit inválida: $mensagem"
+  echo "Use: tipo: descrição (ex.: feat: adiciona validação do formulário de contato)"
+  exit 1
+fi
