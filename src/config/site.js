@@ -1,5 +1,5 @@
 export const SITE = {
-  name: 'Henri',
+  name: 'Henrique Vieira',
   role: 'Desenvolvedor front-end',
   intro:
     'Construo interfaces em React com foco em acessibilidade, desempenho e código que outras pessoas conseguem manter.',
