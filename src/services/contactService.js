@@ -20,6 +20,11 @@ async function sendEmail({ name, email, message }) {
   );
 }
 
+// O EmailJS rejeita com um objeto ({ status, text }), não com um Error comum.
+function describeError(err) {
+  return err?.text || err?.message || String(err);
+}
+
 // Salva a mensagem no banco (para o dashboard) e avisa o dono por e-mail.
 export async function sendContact(data) {
   const supabase = await getSupabase();
@@ -29,9 +34,16 @@ export async function sendContact(data) {
 
   try {
     await sendEmail(data);
-  } catch {
+  } catch (err) {
+    console.error('Falha no envio de e-mail:', err);
+    const friendly =
+      'Sua mensagem foi registrada, mas o aviso por e-mail falhou. Se for urgente, escreva direto para o meu e-mail.';
+    // Em desenvolvimento mostra o motivo real; em produção, só a mensagem amigável.
     throw new Error(
-      'Sua mensagem foi registrada, mas o aviso por e-mail falhou. Se for urgente, escreva direto para o meu e-mail.',
+      import.meta.env.DEV ? `${friendly} (${describeError(err)})` : friendly,
+      {
+        cause: err,
+      },
     );
   }
 }
