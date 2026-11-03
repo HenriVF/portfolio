@@ -2,7 +2,7 @@
 
 Site de portfólio pessoal em React. Os projetos vêm da API do GitHub, há um formulário de contato (salvo no banco e enviado por e-mail) e um dashboard protegido por login.
 
-- **Site publicado:** _(cole aqui a URL da Vercel)_
+- **Site publicado:** https://portfolio-seven-pi-4okof4k8mi.vercel.app/
 - **Repositório:** https://github.com/HenriVF/portfolio
 
 ## Tecnologias
